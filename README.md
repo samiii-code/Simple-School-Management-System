@@ -1,5 +1,257 @@
-# MEAN School Management System (RBAC)
+Creaver — School Management (MEAN + RBAC)
 
+A compact school management system built with MongoDB, Express, Angular, and Node.js. It implements JWT authentication, role-based access control (Admin / Teacher / Student), and CRUD operations for users, subjects, grades, and marks. The backend computes letter grades from numeric marks.
+
+Table of contents
+
+- Project overview
+- Quick start
+- Environment
+- Running the app
+- Testing
+- Deployment
+- Project structure
+
+Quick start
+
+Prerequisites:
+- Node.js 16+ and npm
+- MongoDB (local) or MongoDB Atlas
+
+Backend (development):
+
+```bash
+cd backend
+npm install
+cp .env.example .env
+# edit .env: set MONGODB_URI, JWT_SECRET, CORS_ORIGIN, PORT
+npm run seed   # optional: seed test accounts and sample data
+npm run dev
+```
+
+Default backend URL: `http://localhost:4000`
+
+Frontend (development):
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+Default frontend URL: `http://localhost:4200`
+
+If the backend runs at a different URL, update `src/environments/environment.ts` (`apiBaseUrl`).
+
+Environment variables
+
+- `MONGODB_URI` — MongoDB connection string (required)
+- `JWT_SECRET` — secret for signing JWTs (required)
+- `PORT` — backend port (default 4000)
+- `CORS_ORIGIN` — allowed frontend origin (e.g. `http://localhost:4200`)
+
+Keep secrets out of the repo; use `.env` locally and proper secrets in production.
+
+Running tests
+
+Backend (Jest):
+
+```bash
+cd backend
+set NODE_ENV=test
+npm test
+```
+
+Frontend (Cypress E2E):
+
+Start backend and frontend, then:
+
+```bash
+cd frontend
+npm run e2e:open   # interactive
+# or headless
+npm run e2e:run
+```
+
+Project structure (short)
+
+- `backend/` — Node + Express API
+  - `src/config` — env and DB setup
+  - `src/middleware` — auth and RBAC
+  - `src/models` — Mongoose models
+  - `src/routes` — route handlers (auth, admin, teacher, student)
+  - `src/utils/grading.ts` — marks → letter grade logic
+  - `seed.ts` — creates test accounts and sample data
+
+- `frontend/` — Angular app (Material) with guards, interceptors, and services
+
+- `AUDIT.md` — detailed audit and fixes implemented
+
+API highlights
+
+- `POST /api/auth/login` — returns JWT
+- Admin routes: manage users, subjects, grades
+- Teacher routes: view assigned grades/students, post marks
+- Student routes: view own marks and performance
+
+Deployment notes
+
+- Backend: deploy on Render / Railway / Heroku. Supply `MONGODB_URI`, `JWT_SECRET`, `CORS_ORIGIN`.
+- Frontend: deploy on Netlify / Vercel. Set `apiBaseUrl` in production environment.
+- Use MongoDB Atlas for production database.
+
+Seeded sample accounts
+
+Run `npm run seed` in `backend` to create test accounts (Admin / Teacher / Student) and sample students with marks.
+
+Need help or want changes?
+
+Open an issue or ask for a specific README change (setup steps, missing commands, or additional documentation).
+
+---
+Updated README: clarified setup, commands, envs, and structure.
+A compact school management system built with MongoDB, Express, Angular, and Node.js. It implements JWT authentication, role-based access control (Admin / Teacher / Student), and CRUD operations for users, subjects, grades, and marks. The backend computes letter grades from numeric marks.
+
+Table of contents
+
+## Project overview
+
+Updated README: clarified setup, commands, envs, and structure.
+Production-ready school management system built with **MongoDB + Express + Angular + Node**, with strict Role-Based Access Control (RBAC), JWT authentication, and full CRUD for teachers, students, subjects, grades, and marks.
+
+## Architecture
+
+## RBAC (Role-Based Access Control)
+
+## Grading logic (backend only)
+
+## Local setup
+
+## Environment variables
+
+## Sample accounts (seeded by `npm run seed`)
+
+## API overview
+
+## Deployment
+
+## Testing
+
+## Audit summary (what was fixed)
+
+For the full audit report and detailed fix list, see **AUDIT.md**.
+Creaver — School Management (MEAN + RBAC)
+
+A compact school management system built with MongoDB, Express, Angular, and Node.js. It implements JWT authentication, role-based access control (Admin / Teacher / Student), and CRUD operations for users, subjects, grades, and marks. The backend computes letter grades from numeric marks.
+
+Table of contents
+
+- Project overview
+- Quick start
+- Environment
+- Running the app
+- Testing
+- Deployment
+- Project structure
+
+Quick start
+
+Prerequisites:
+- Node.js 16+ and npm
+- MongoDB (local) or MongoDB Atlas
+
+Backend (development):
+
+```bash
+cd backend
+npm install
+cp .env.example .env
+# edit .env: set MONGODB_URI, JWT_SECRET, CORS_ORIGIN, PORT
+npm run seed   # optional: seed test accounts and sample data
+npm run dev
+```
+
+Default backend URL: `http://localhost:4000`
+
+Frontend (development):
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+Default frontend URL: `http://localhost:4200`
+
+If the backend runs at a different URL, update `src/environments/environment.ts` (`apiBaseUrl`).
+
+Environment variables
+
+- `MONGODB_URI` — MongoDB connection string (required)
+- `JWT_SECRET` — secret for signing JWTs (required)
+- `PORT` — backend port (default 4000)
+- `CORS_ORIGIN` — allowed frontend origin (e.g. `http://localhost:4200`)
+
+Keep secrets out of the repo; use `.env` locally and proper secrets in production.
+
+Running tests
+
+Backend (Jest):
+
+```bash
+cd backend
+set NODE_ENV=test
+npm test
+```
+
+Frontend (Cypress E2E):
+
+Start backend and frontend, then:
+
+```bash
+cd frontend
+npm run e2e:open   # interactive
+# or headless
+npm run e2e:run
+```
+
+Project structure (short)
+
+- `backend/` — Node + Express API
+  - `src/config` — env and DB setup
+  - `src/middleware` — auth and RBAC
+  - `src/models` — Mongoose models
+  - `src/routes` — route handlers (auth, admin, teacher, student)
+  - `src/utils/grading.ts` — marks → letter grade logic
+  - `seed.ts` — creates test accounts and sample data
+
+- `frontend/` — Angular app (Material) with guards, interceptors, and services
+
+- `AUDIT.md` — detailed audit and fixes implemented
+
+API highlights
+
+- `POST /api/auth/login` — returns JWT
+- Admin routes: manage users, subjects, grades
+- Teacher routes: view assigned grades/students, post marks
+- Student routes: view own marks and performance
+
+Deployment notes
+
+- Backend: deploy on Render / Railway / Heroku. Supply `MONGODB_URI`, `JWT_SECRET`, `CORS_ORIGIN`.
+- Frontend: deploy on Netlify / Vercel. Set `apiBaseUrl` in production environment.
+- Use MongoDB Atlas for production database.
+
+Seeded sample accounts
+
+Run `npm run seed` in `backend` to create test accounts (Admin / Teacher / Student) and sample students with marks.
+
+Need help or want changes?
+
+Open an issue or ask for a specific README change (setup steps, missing commands, or additional documentation).
+
+---
+Updated README: clarified setup, commands, envs, and structure.
 Production-ready school management system built with **MongoDB + Express + Angular + Node**, with strict Role-Based Access Control (RBAC), JWT authentication, and full CRUD for teachers, students, subjects, grades, and marks.
 
 ## Project overview
@@ -191,5 +443,4 @@ Or headless: `npm run e2e:run`.
 - **README**: Project overview, architecture, folder structure, setup, env vars, RBAC, grading logic, sample accounts, deployment, testing, and this audit summary.
 
 For the full audit report and detailed fix list, see **AUDIT.md**.
-#   S i m p l e - S c h o o l - M a n a g e m e n t - S y s t e m  
- 
+#
